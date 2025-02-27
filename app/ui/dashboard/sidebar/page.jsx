@@ -22,17 +22,17 @@ export default function Sidebar() {
       list: [
         {
           title: "Dashboard",
-          path: "/dashboard",
+          path: "/Dashboard",
           icon: <MdDashboard />,
         },
         {
           title: "Users",
-          path: "/dashboard/users",
+          path: "/Dashboard/Users",
           icon: <MdSupervisedUserCircle />,
         },
         {
           title: "Products",
-          path: "/dashboard/products",
+          path: "/Dashboard/Products",
           icon: <MdShoppingBag />,
         },
         {
@@ -96,6 +96,10 @@ export default function Sidebar() {
           </li>
         ))}
       </ul>
+      <button className={styles.logout}>
+        <MdLogout/>
+        Logout
+      </button>
     </div>
   )
 }
