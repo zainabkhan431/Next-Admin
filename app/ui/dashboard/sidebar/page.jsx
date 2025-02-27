@@ -81,8 +81,13 @@ export default function Sidebar() {
   return (
     <div className={styles.container}>
      <ul className={styles.list}>
+      <img src='/noavatar.png' alt='' width='50' height='50' className={styles.userImage}/>
+      <div className={styles.userDetail}>
+        <span className={styles.username}> John Doe</span>
+        <span className={styles.userTitle}> Administrator</span>
+      </div>
         {menuItems.map((cat) => (
-          <li key={cat.title}>
+          <li className={styles.list} key={cat.title}>
             <span className={styles.cat}>{cat.title}</span>
             {cat.list.map((item) => (
               // <MenuL item={item} key={item.title} />
