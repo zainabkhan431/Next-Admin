@@ -1,6 +1,8 @@
 import React from 'react'
 import Sidebar from '../ui/dashboard/sidebar/page'
 import Navbar from '../ui/dashboard/navbar/page'
+import Footer from '../ui/dashboard/footer/footer'
+
 import styles from "../ui/dashboard/dashboard.module.css";
 export default function layout({children}) {
   return (
@@ -11,6 +13,7 @@ export default function layout({children}) {
       <div className={styles.content}>
         <Navbar/>
         {children}
+        <Footer/>
       </div>
     </div>
   )
