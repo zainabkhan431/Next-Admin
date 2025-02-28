@@ -52,7 +52,7 @@ export default function Users() {
       <div className={styles.buttons}>
 
     
-      <Link href="">
+      <Link href="/Dashboard/Users/test">
       <button className={`${styles.container} ${styles.view}`}>
         View
       </button>

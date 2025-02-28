@@ -52,7 +52,7 @@ export default function Products() {
     </td>
     <td>
       <div className={styles.buttons}>
-      <Link href="">
+      <Link href="/Dashboard/Products/test">
       <button className={`${styles.container} ${styles.view}`}>
         View
       </button>
