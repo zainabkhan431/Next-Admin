@@ -1,34 +1,36 @@
-import React from 'react'
-import styles from "@/app/ui/dashboard/users/users.module.css";
-import Search from "@/app/ui/dashboard/search/search";
-import Pagination from "@/app/ui/dashboard/pagination/pagination";
-import Link from 'next/link';
-import Image from 'next/image';
-import { fetchusers } from '../../lib/data';
-export default async function Users({searchParams}) {
-  const q =searchParams?.q || "";
 
-  const users= await fetchusers(q);
- 
+import Pagination from "@/app/ui/dashboard/pagination/pagination";
+import Search from "@/app/ui/dashboard/search/search";
+import styles from "@/app/ui/dashboard/users/users.module.css";
+import Image from "next/image";
+import Link from "next/link";
+import { fetchUsers } from "../../lib/data";
+
+const UsersPage = async ({ searchParams }) => {
+  const q =  searchParams?.q || "";
+  const page = searchParams?.page || 1;;
+  const{count,users} = await fetchUsers(q,page);
+
   return (
     <div className={styles.container}>
       <div className={styles.top}>
-<Search placeholder=" Search user..."/>
-<Link href='/Dashboard/Users/add'>
-<button className={styles.addButton}> Add new</button>
-</Link>
+        <Search placeholder="Search for a user..." />
+        <Link href="/dashboard/users/add">
+          <button className={styles.addButton}>Add New</button>
+        </Link>
       </div>
       <table className={styles.table}>
-<thead>
-  <tr>
-  <td>Name</td>
-  <td>Email</td>
-  <td>Created At</td>
-  <td>Role</td>
-  <td>Action</td>
-  </tr>
-</thead>
-<tbody>
+        <thead>
+          <tr>
+            <td>Name</td>
+            <td>Email</td>
+            <td>Created At</td>
+            <td>Role</td>
+            <td>Status</td>
+            <td>Action</td>
+          </tr>
+        </thead>
+        <tbody>
           {users.map((user) => (
             <tr key={user.id}>
               <td>
@@ -40,8 +42,7 @@ export default async function Users({searchParams}) {
                     height={40}
                     className={styles.userImage}
                   />
-                  {user.username
-                  }
+                  {user.username}
                 </div>
               </td>
               <td>{user.email}</td>
@@ -50,7 +51,7 @@ export default async function Users({searchParams}) {
               <td>{user.isActive ? "active" : "passive"}</td>
               <td>
                 <div className={styles.buttons}>
-                  <Link href={`/Dashboard/Users/${user.id}`}>
+                  <Link href={`/dashboard/users/${user.id}`}>
                     <button className={`${styles.button} ${styles.view}`}>
                       View
                     </button>
@@ -67,7 +68,9 @@ export default async function Users({searchParams}) {
           ))}
         </tbody>
       </table>
-      <Pagination/>
+      <Pagination count={count}/>
     </div>
-  )
-}
+  );
+};
+
+export default UsersPage;
