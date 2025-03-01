@@ -5,9 +5,11 @@ import Pagination from "@/app/ui/dashboard/pagination/pagination";
 import Link from 'next/link';
 import Image from 'next/image';
 import { fetchusers } from '../../lib/data';
-export default async function Users() {
-  const users= await fetchusers();
-  console.log(users);
+export default async function Users({searchParams}) {
+  const q =searchParams?.q || "";
+
+  const users= await fetchusers(q);
+ 
   return (
     <div className={styles.container}>
       <div className={styles.top}>
@@ -38,7 +40,8 @@ export default async function Users() {
                     height={40}
                     className={styles.userImage}
                   />
-                  {user.username}
+                  {user.username
+                  }
                 </div>
               </td>
               <td>{user.email}</td>
