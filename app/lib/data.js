@@ -1,4 +1,4 @@
-import { User } from "./model.js";
+import { User,Product } from "./model.js";
 import { connectToDB } from "./utils";
 
 export const fetchUsers = async (q, page) => {
@@ -40,7 +40,7 @@ export const fetchProducts = async (q, page) => {
 
   try {
     connectToDB();
-    const count = await Product.find({ title: { $regex: regex } }).count();
+    const count = await Product.find({ title: { $regex: regex } }).countDocuments();
     const products = await Product.find({ title: { $regex: regex } })
       .limit(ITEM_PER_PAGE)
       .skip(ITEM_PER_PAGE * (page - 1));

@@ -5,6 +5,7 @@ import styles from "@/app/ui/dashboard/users/users.module.css";
 import Image from "next/image";
 import Link from "next/link";
 import { fetchUsers } from "../../lib/data";
+import {  deleteUser } from "../../lib/action";
 
 const UsersPage = async ({ searchParams }) => {
   const q =  searchParams?.q || "";
@@ -15,7 +16,7 @@ const UsersPage = async ({ searchParams }) => {
     <div className={styles.container}>
       <div className={styles.top}>
         <Search placeholder="Search for a user..." />
-        <Link href="/dashboard/users/add">
+        <Link href="/Dashboard/Users/add">
           <button className={styles.addButton}>Add New</button>
         </Link>
       </div>
@@ -51,12 +52,12 @@ const UsersPage = async ({ searchParams }) => {
               <td>{user.isActive ? "active" : "passive"}</td>
               <td>
                 <div className={styles.buttons}>
-                  <Link href={`/dashboard/users/${user.id}`}>
+                  <Link href={`/Dashboard/Users/${user.id}`}>
                     <button className={`${styles.button} ${styles.view}`}>
                       View
                     </button>
                   </Link>
-                  <form >
+                  <form action={deleteUser}>
                     <input type="hidden" name="id" value={(user.id)} />
                     <button className={`${styles.button} ${styles.delete}`}>
                       Delete

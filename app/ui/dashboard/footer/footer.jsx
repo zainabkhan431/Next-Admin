@@ -6,9 +6,9 @@ export default function footer() {
         <div className={styles.logo}>
             Lama Dev
         </div>
-        <divc className={styles.text}>
+        <div className={styles.text}>
       All Right reserved
-        </divc>
+        </div>
       
     </div>
   )
